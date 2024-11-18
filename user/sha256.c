@@ -192,7 +192,7 @@ int main(int argc, char *argv[]) {
     sha256_update(&ctx, (uint8_t *)argv[1], strlen(argv[1]));
     sha256_final(&ctx, hash);
 
-    write(1, "SHA-256 hash: ", 14); // Using write() for output
+    write(1, "USER SPACE IMPLEMENTATION: SHA-256 hash: ", 41); // Using write() for output
     print_hash(hash);                // Use the first version of print_hash
     exit(0);
 }
