@@ -141,6 +141,7 @@ UPROGS=\
 	$U/_wc\
 	$U/_zombie\
 	$U/_sha256\
+	$U/_sha256syscall\
 
 
 fs.img: mkfs/mkfs README $(UPROGS)

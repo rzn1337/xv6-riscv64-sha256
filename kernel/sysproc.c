@@ -6,6 +6,42 @@
 #include "spinlock.h"
 #include "proc.h"
 
+// #include "types.h"
+// #include "riscv.h"
+// #include "defs.h"
+#include "sha256.h"
+#include <stddef.h>
+
+
+
+
+void sys_sha256(void) {
+    static const char hex_chars[] = "0123456789abcdef";
+    const char *input = "Hello world!"; // Replace with your desired string
+    uint8_t hash_output[32]; // SHA-256 hash is 32 bytes
+    SHA256_CTX ctx;
+
+    // Initialize SHA-256 context
+    sha256_init(&ctx);
+
+    // Process the input string
+    sha256_update(&ctx, (const uint8_t *)input, strlen(input));
+
+    // Finalize the hash
+    sha256_final(&ctx, hash_output);
+
+    printf("SYSTEM CALL IMPLEMENTATION: SHA-256 hash of \"%s\": ", input);
+    for (int i = 0; i < 32; i++) {
+        char high_nibble = hex_chars[(hash_output[i] >> 4) & 0xF];
+        char low_nibble = hex_chars[hash_output[i] & 0xF];
+        consputc(high_nibble); // Print high nibble
+        consputc(low_nibble);  // Print low nibble
+    }
+    consputc('\n'); // Print newline
+    printf("\n");
+}
+
+
 uint64
 sys_exit(void)
 {

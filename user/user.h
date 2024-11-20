@@ -1,3 +1,4 @@
+typedef unsigned int uint;
 struct stat;
 
 // system calls
@@ -22,6 +23,8 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+void sha256(void);
+
 
 // ulib.c
 int stat(const char*, struct stat*);
